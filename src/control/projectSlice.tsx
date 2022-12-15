@@ -5,7 +5,7 @@ export const projectSlice = createSlice({
   name: 'project',
   initialState: StorageApi.getProject(),
   reducers: {
-    
+    // TODO: Implement reducers after view retrieve data from store
   }
 })
 
