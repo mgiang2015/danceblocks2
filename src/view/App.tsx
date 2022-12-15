@@ -1,5 +1,6 @@
 import './App.css';
 import { useAppSelector } from '../control/hooks'
+import BlockingList from './components/blockingList/blockingList';
 
 function App() {
   const project = useAppSelector(state => state.project);
@@ -8,7 +9,7 @@ function App() {
   })
   
   return (
-    <h1>HelloWorld</h1>
+    <BlockingList project={project}></BlockingList>
   );
 }
 
