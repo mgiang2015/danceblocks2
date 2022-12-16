@@ -1,12 +1,15 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Blocking } from "../../../model/blocking";
 
 interface BlockingListItemProps {
-    blocking: Blocking
+    blocking: Blocking,
+    isCurrent: boolean
 }
 
-export default function BlockingListItem({ blocking }: BlockingListItemProps): JSX.Element {
+export default function BlockingListItem({ blocking, isCurrent }: BlockingListItemProps): JSX.Element {
     return (
-        <Box>Hehe i am blocking with id {blocking.getId()}</Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', border: isCurrent ? 4 : 1, height: '75%'}}>
+            <Typography>{blocking.getName()}</Typography>
+        </Box>
     )
 }

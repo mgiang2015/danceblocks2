@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Dancer } from "../../../model/dancer";
 
 interface DancerListItemProp {
@@ -7,6 +7,9 @@ interface DancerListItemProp {
 
 export default function DancerListItem({ dancer }: DancerListItemProp): JSX.Element {
     return (
-        <Box>Hehe i am dancer with id {dancer.getId()}</Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: '100%' }}>
+            <Typography>{dancer.getName()}</Typography>
+            <Box sx={{ height: '1em', width: '1em', backgroundColor: dancer.getColor() }}/>
+        </Box>
     )
 }

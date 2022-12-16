@@ -23,6 +23,10 @@ class Project {
         return this.blockings;
     }
 
+    public getCurrentBlockingId() {
+        return this.currentBlockingId;
+    }
+
     public getCurrentBlocking() {
         return this.blockings.find(blocking => blocking.getId() === this.currentBlockingId);
     }

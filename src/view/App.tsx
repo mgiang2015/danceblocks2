@@ -15,6 +15,8 @@ function getWindowDimensions() {
   };
 }
 
+const padding = '0.5em'
+
 function App() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   useEffect(() => {
@@ -32,18 +34,18 @@ function App() {
   
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: windowDimensions.height }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 5, border: 1 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 5, border: 1}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1, padding: padding }}>
           <Toolbar />
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 4, border: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 7, border: 1  }}>
           <Stage blocking={project.getCurrentBlocking()}/>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1, padding: padding  }}>
           <DancerList blocking={project.getCurrentBlocking()} />
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', flexGrow: 1, border: 1, paddingLeft: padding}}>
         <BlockingList project={project} />
       </Box>
     </Box>

@@ -6,5 +6,5 @@ interface ToolbarItemProps {
 }
 
 export default function ToolbarItem({ label, listener }: ToolbarItemProps) {
-    return <Button onClick={listener}>{label}</Button>
+    return <Button sx={{ textTransform: 'none' }} color='inherit' onClick={listener}>{label}</Button>
 }
