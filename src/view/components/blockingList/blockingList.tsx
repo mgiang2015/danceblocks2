@@ -7,7 +7,6 @@ import { findCurrentBlocking } from "../../../model/factory";
 export default function BlockingList() {
     const appState = useAppSelector(selectState);
     let currentBlocking = findCurrentBlocking(appState);
-    console.log(appState)
     return (
         <Stack direction="row" spacing={2} sx={{ display: 'flex', alignItems: 'center', height: '100%', maxWidth: '85em', overflow: 'auto' }}>
             <ListSubheader sx={{ display: 'flex', justifyContent: 'center' }}>Blockings</ListSubheader>
