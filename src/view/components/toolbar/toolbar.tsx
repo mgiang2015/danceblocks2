@@ -1,5 +1,5 @@
 import { ListSubheader, Stack } from "@mui/material";
-import { addBlocking } from "../../../control/blockingsSlice";
+import { addBlocking, addDancer } from "../../../control/stateSlice";
 import { useAppDispatch } from "../../../control/hooks";
 import ToolbarItem from "./toolbarItem";
 
@@ -12,7 +12,7 @@ export default function Toolbar() {
             listener: () => dispatch(addBlocking())
         },{
             label: "Add Dancer",
-            listener: () => console.log("Nice")
+            listener: () => dispatch(addDancer())
         }
     ];
 

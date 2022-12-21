@@ -11,6 +11,7 @@ function addNewDefaultDancer(blocking: Blocking) {
         xCoord: 0,
         yCoord: 0
     }
+
     blocking.dancerCount += 1;
     blocking.dancers.push(newDancer);
 }

@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { selectState } from "../../../control/blockingsSlice";
+import { selectState } from "../../../control/stateSlice";
 import { useAppSelector } from "../../../control/hooks";
 import { findCurrentBlocking } from "../../../model/factory";
 import StageDancer from "./stageDancer";

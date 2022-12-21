@@ -1,7 +1,7 @@
 import { ListSubheader, Stack, Typography } from "@mui/material";
 import BlockingListItem from "./blockingListItem";
 import { useAppSelector } from "../../../control/hooks";
-import { selectState } from "../../../control/blockingsSlice";
+import { selectState } from "../../../control/stateSlice";
 import { findCurrentBlocking } from "../../../model/factory";
 
 export default function BlockingList() {
