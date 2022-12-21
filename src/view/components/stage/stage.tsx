@@ -1,12 +1,14 @@
 import { Box } from "@mui/material";
+import { selectState } from "../../../control/blockingsSlice";
+import { useAppSelector } from "../../../control/hooks";
+import { findCurrentBlocking } from "../../../model/factory";
 import StageDancer from "./stageDancer";
 
-interface StageProps {
-    blocking?: Blocking
-}
+export default function Stage() {
+    const appState = useAppSelector(selectState);
+    let currentBlocking = findCurrentBlocking(appState);
+    let dancers = (currentBlocking && currentBlocking.dancers) || []
 
-export default function Stage({ blocking }: StageProps) {
-    const dancers = blocking ? blocking.dancers : [];
     return (
         <Box>
             {dancers.map((dancer) => {

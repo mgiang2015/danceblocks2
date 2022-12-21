@@ -1,12 +1,13 @@
 import { List, ListSubheader, Stack, Typography } from "@mui/material";
+import { selectState } from "../../../control/blockingsSlice";
+import { useAppSelector } from "../../../control/hooks";
+import { findCurrentBlocking } from "../../../model/factory";
 import DancerListItem from "./dancerListItem";
 
-interface DancerListProps {
-    blocking?: Blocking
-}
-
-export default function DancerList({ blocking }: DancerListProps) {
-    const dancers = blocking ? blocking.dancers : [];
+export default function DancerList() {
+    const appState = useAppSelector(selectState);
+    let currentBlocking = findCurrentBlocking(appState);
+    let dancers = (currentBlocking && currentBlocking.dancers) || []
     dancers.sort();
     return (
         <Stack sx={{ maxHeight: '35em', overflow: 'auto', width: '100%' }}>
