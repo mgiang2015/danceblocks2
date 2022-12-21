@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { Blocking } from "../../../model/blocking";
 
 interface BlockingListItemProps {
     blocking: Blocking,
@@ -9,7 +8,7 @@ interface BlockingListItemProps {
 export default function BlockingListItem({ blocking, isCurrent }: BlockingListItemProps): JSX.Element {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', border: isCurrent ? 4 : 1, height: '75%', aspectRatio: 1 }}>
-            <Typography>{blocking.getName()}</Typography>
+            <Typography>{blocking.name}</Typography>
         </Box>
     )
 }

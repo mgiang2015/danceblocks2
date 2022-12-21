@@ -27,11 +27,6 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const project = useAppSelector(state => state.project);
-  project.getBlockings().map((blocking) => {
-    console.log(blocking);
-  })
-  
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: windowDimensions.height }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', height: '200em', border: 1}}>
@@ -39,14 +34,14 @@ function App() {
           <Toolbar />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 7, border: 1  }}>
-          <Stage blocking={project.getCurrentBlocking()}/>
+          <Stage />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, border: 1 }}>
-          <DancerList blocking={project.getCurrentBlocking()} />
+          <DancerList />
         </Box>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', height: '100%', border: 1, paddingLeft: padding}}>
-        <BlockingList project={project} />
+        <BlockingList />
       </Box>
     </Box>
   );

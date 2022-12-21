@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import projectReducer from './projectSlice'
+import blockingsReducer from './blockingsSlice'
 
 export const store = configureStore({
     reducer: {
-        project: projectReducer
+        blockings: blockingsReducer
     }
 })
 
