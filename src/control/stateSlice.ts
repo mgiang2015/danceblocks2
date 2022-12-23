@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, findCurrentBlocking } from "../model/factory";
+import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, findCurrentBlocking, updateDancerCoord } from "../model/util";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {
@@ -26,11 +26,18 @@ export const stateSlice = createSlice({
             if (currentBlocking) {
                 addNewDefaultDancer(currentBlocking);
             }
+        },
+        moveDancer: (state, action) => {
+            let payload: { id: number, x: number, y: number } = action.payload;
+            let currentBlocking = findCurrentBlocking(state);
+            if (currentBlocking) {
+                updateDancerCoord(currentBlocking, payload.id, payload.x, payload.y);
+            }
         }
     }
 })
 
-export const { addBlocking, addDancer } = stateSlice.actions
+export const { addBlocking, addDancer, moveDancer } = stateSlice.actions
 export const selectState = (state: RootState) => state.blockings
 
 export default stateSlice.reducer

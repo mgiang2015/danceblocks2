@@ -2,7 +2,7 @@ import { ListSubheader, Stack, Typography } from "@mui/material";
 import BlockingListItem from "./blockingListItem";
 import { useAppSelector } from "../../../control/hooks";
 import { selectState } from "../../../control/stateSlice";
-import { findCurrentBlocking } from "../../../model/factory";
+import { findCurrentBlocking } from "../../../model/util";
 
 export default function BlockingList() {
     const appState = useAppSelector(selectState);

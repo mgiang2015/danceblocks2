@@ -1,6 +1,8 @@
 const NEW_DANCER_NAME = "New Dancer";
 const NEW_DANCER_COLOR = "#A020F0";
 const NEW_BLOCKING_NAME = "New Blocking";
+const NEW_DANCER_XCOORD = getWindowDimensions().width / 2
+const NEW_DANCER_YCOORD = getWindowDimensions().height / 2
 
 function addNewDefaultDancer(blocking: Blocking) {
     let id = blocking.dancerCount
@@ -8,8 +10,8 @@ function addNewDefaultDancer(blocking: Blocking) {
         id: id,
         name: NEW_DANCER_NAME,
         color: NEW_DANCER_COLOR,
-        xCoord: 0,
-        yCoord: 0
+        xCoord: NEW_DANCER_XCOORD,
+        yCoord: NEW_DANCER_YCOORD
     }
 
     blocking.dancerCount += 1;
@@ -22,11 +24,19 @@ function addNewDancer(blocking: Blocking, name: string, color: string, xCoord?: 
         id: id,
         name: name,
         color: color,
-        xCoord: xCoord || 0,
-        yCoord: yCoord || 0
+        xCoord: xCoord || NEW_DANCER_XCOORD,
+        yCoord: yCoord || NEW_DANCER_YCOORD
     };
     blocking.dancerCount += 1;
     blocking.dancers.push(newDancer);
+}
+
+function updateDancerCoord( blocking: Blocking, dancerId: number, newX: number, newY: number ) {
+    let dancer = blocking.dancers.find((dancer) => dancer.id === dancerId);
+    if (dancer) {
+        dancer.xCoord = newX;
+        dancer.yCoord = newY;
+    }
 }
 
 function findCurrentBlocking(state: AppState) {
@@ -70,4 +80,13 @@ function addNewBlocking(state: AppState) {
     state.blockings.push(newBlocking);
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking }
+
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+}
+
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions}

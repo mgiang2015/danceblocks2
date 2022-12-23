@@ -1,19 +1,11 @@
 import './App.css';
-import { useAppSelector } from '../control/hooks'
 import BlockingList from './components/blockingList/blockingList';
 import { Box } from '@mui/material';
 import Toolbar from './components/toolbar/toolbar';
 import Stage from './components/stage/stage';
 import DancerList from './components/dancerList/dancerList';
 import { useEffect, useState } from 'react';
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
-}
+import { getWindowDimensions } from '../model/util';
 
 const padding = '0.5em'
 

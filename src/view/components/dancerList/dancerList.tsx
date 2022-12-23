@@ -1,7 +1,7 @@
 import { List, ListSubheader, Stack, Typography } from "@mui/material";
 import { selectState } from "../../../control/stateSlice";
 import { useAppSelector } from "../../../control/hooks";
-import { findCurrentBlocking } from "../../../model/factory";
+import { findCurrentBlocking } from "../../../model/util";
 import DancerListItem from "./dancerListItem";
 import { useEffect, useState } from "react";
 
