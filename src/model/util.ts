@@ -1,8 +1,8 @@
 const NEW_DANCER_NAME = "New Dancer";
 const NEW_DANCER_COLOR = "#A020F0";
 const NEW_BLOCKING_NAME = "New Blocking";
-const NEW_DANCER_XCOORD = getWindowDimensions().width / 2
-const NEW_DANCER_YCOORD = getWindowDimensions().height / 2
+const NEW_DANCER_XCOORD = 100
+const NEW_DANCER_YCOORD = 100
 
 function addNewDefaultDancer(blocking: Blocking) {
     let id = blocking.dancerCount
@@ -34,8 +34,8 @@ function addNewDancer(blocking: Blocking, name: string, color: string, xCoord?: 
 function updateDancerCoord( blocking: Blocking, dancerId: number, newX: number, newY: number ) {
     let dancer = blocking.dancers.find((dancer) => dancer.id === dancerId);
     if (dancer) {
-        dancer.xCoord = newX;
-        dancer.yCoord = newY;
+        dancer.xCoord += newX;
+        dancer.yCoord += newY;
     }
 }
 

@@ -15,14 +15,16 @@ export default function Stage() {
     }
     
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
-        let data: { id: number } = JSON.parse(e.dataTransfer.getData("data"));
+        let data: { id: number, x: number, y: number } = JSON.parse(e.dataTransfer.getData("data"));
+        let oldX = data.x;
+        let oldY = data.y;
         let newX = e.clientX;
         let newY = e.clientY;
-        dispatch(moveDancer({ id: data.id, x: newX, y: newY }));
+        dispatch(moveDancer({ id: data.id, x: newX - oldX, y: newY - oldY }));
     }
 
     return (
-        <Box onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} sx={{ width: "100%", height: "100%" }}>
+        <Box onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} sx={{ position: "relative", width: "100%", height: "100%" }}>
             {dancers.map((dancer) => {
                 return <StageDancer key={dancer.id} dancer={dancer}/>
             })}
