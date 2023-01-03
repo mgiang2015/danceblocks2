@@ -3,6 +3,7 @@ import { moveDancer, selectCurrentBlocking, selectState } from "../../../control
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import { findCurrentBlocking, getWindowDimensions } from "../../../model/util";
 import StageDancer from "./stageDancer";
+import { UccStageDepth, UccStageWidth } from "../../../model/const";
 
 export default function Stage() {
     const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ export default function Stage() {
     }
 
     return (
-        <Box onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} sx={{ position: "relative", width: "100%", height: "100%" }}>
+        <Box onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} sx={{ position: "relative", width: UccStageWidth, height: UccStageDepth, border: 2 }}>
             {dancers.map((dancer) => {
                 return <StageDancer key={dancer.id} dancer={dancer}/>
             })}

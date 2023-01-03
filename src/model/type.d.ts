@@ -18,3 +18,8 @@ interface AppState {
     blockings: Blocking[]
     currentBlockingId: number
 }
+
+interface Tool {
+    label: string
+    listener: () => void
+}
