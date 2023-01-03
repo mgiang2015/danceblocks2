@@ -1,5 +1,5 @@
 import { FreeCamera, Color3, Vector3, HemisphericLight, MeshBuilder, Scene, Mesh, SceneLoader, ArcRotateCamera, Material, StandardMaterial } from "@babylonjs/core";
-import { scalingConstant } from "../../../model/const";
+import { scalingConstant } from "../../../control/const";
 
 // Constants
 const headHeight = 22.5 / scalingConstant;

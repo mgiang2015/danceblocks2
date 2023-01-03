@@ -2,7 +2,7 @@ import { FreeCamera, Color3, Vector3, HemisphericLight, MeshBuilder, Scene, Mesh
 import SceneComponent from 'babylonjs-hook'; // if you install 'babylonjs-hook' NPM.
 import { useAppSelector } from "../../../control/hooks";
 import { selectCurrentBlocking } from "../../../control/stateSlice";
-import { UccStageWidth, UccStageDepth } from "../../../model/const";
+import { UccStageTotalWidth, UccStageDepth } from "../../../control/const";
 import buildDancer from "./dancer3d";
 
 // Scene rendering and what we need for the scene
@@ -25,20 +25,21 @@ const onSceneReady = (scene: Scene, currentBlocking?: Blocking) => {
     light.intensity = 0.7;
     
     // Create ground lul
-    const ground = MeshBuilder.CreateGround("ground", {width: UccStageWidth, height: UccStageDepth});
+    const ground = MeshBuilder.CreateGround("ground", {width: UccStageTotalWidth, height: UccStageDepth});
     const groundMaterial = new StandardMaterial("groundMaterial");
     groundMaterial.diffuseColor = new Color3(150 / 255, 111 / 255, 51 / 255);
     ground.material = groundMaterial;
 
     if (currentBlocking) {
         currentBlocking.dancers.forEach((dancer) => {
-            buildDancer(dancer.xCoord - UccStageWidth / 2, dancer.yCoord - UccStageDepth / 2);
+            buildDancer(dancer.xCoord - UccStageTotalWidth / 2, dancer.yCoord - UccStageDepth / 2);
         })
     }
   };
   
   /**
    * Will run on every frame render.  We are spinning the box on y-axis.
+   * This can be used to implement cannon / special visuals later on
    */
   const onRender = (scene: Scene) => {
     
@@ -48,7 +49,7 @@ const onSceneReady = (scene: Scene, currentBlocking?: Blocking) => {
     // Get state from store to create all the dancers
     const currentBlocking = useAppSelector(selectCurrentBlocking);
     return (
-        <div style={{height: UccStageDepth, width: UccStageWidth}}>
+        <div style={{height: UccStageDepth, width: UccStageTotalWidth}}>
             <SceneComponent style={{height: '100%', width: '100%'}} antialias onSceneReady={(scene) => onSceneReady(scene, currentBlocking)} id="my-canvas" />
         </div>
     )

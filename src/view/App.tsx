@@ -30,7 +30,7 @@ function App() {
       <Box sx={{ display: 'flex', justifyContent: 'space-around', height: '200em', border: 1}}>
         <Box sx={{ display: 'flex', justifyContent: 'center', border: 1, width: "100%" }}>
           <Toolbar tools={[{
-            label: "View 3D",
+            label: view3d ? "Exit 3D" : "View 3D",
             listener: toggle3d
           }]}/>
         </Box>
