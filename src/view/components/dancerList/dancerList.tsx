@@ -1,5 +1,5 @@
 import { List, ListSubheader, Stack, Typography } from "@mui/material";
-import { selectState } from "../../../control/stateSlice";
+import { selectCurrentBlocking, selectState } from "../../../control/stateSlice";
 import { useAppSelector } from "../../../control/hooks";
 import { findCurrentBlocking } from "../../../model/util";
 import DancerListItem from "./dancerListItem";
@@ -7,9 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function DancerList() {
     const [dancersCopy, setDancersCopy] = useState<Dancer[]>([])
-
-    const appState = useAppSelector(selectState);
-    let currentBlocking = findCurrentBlocking(appState);
+    let currentBlocking = useAppSelector(selectCurrentBlocking);
     let dancers = currentBlocking ? currentBlocking.dancers : []
     
     // dancers is immutable. We need to copy and then sort + display the copy, not the original

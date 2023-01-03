@@ -39,5 +39,7 @@ export const stateSlice = createSlice({
 
 export const { addBlocking, addDancer, moveDancer } = stateSlice.actions
 export const selectState = (state: RootState) => state.blockings
+export const selectBlockings = (state: RootState) => state.blockings.blockings
+export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.blockings)
 
 export default stateSlice.reducer

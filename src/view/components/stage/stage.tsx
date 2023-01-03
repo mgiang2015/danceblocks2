@@ -1,13 +1,12 @@
 import { Box } from "@mui/material";
-import { moveDancer, selectState } from "../../../control/stateSlice";
+import { moveDancer, selectCurrentBlocking, selectState } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import { findCurrentBlocking, getWindowDimensions } from "../../../model/util";
 import StageDancer from "./stageDancer";
 
 export default function Stage() {
-    const appState = useAppSelector(selectState);
     const dispatch = useAppDispatch();
-    let currentBlocking = findCurrentBlocking(appState);
+    let currentBlocking = useAppSelector(selectCurrentBlocking);
     let dancers = (currentBlocking && currentBlocking.dancers) || []
 
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
