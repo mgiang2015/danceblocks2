@@ -79,6 +79,12 @@ function deleteBlockingFromState(state: AppState, blockingId: number) {
     return blockingIndex;
 }
 
+function moveBlockingToNewIndex(state: AppState, oldIndex: number, targetIndex: number) {
+    const blocking = state.blockings[oldIndex];
+    state.blockings.splice(oldIndex, 1);
+    state.blockings.splice(targetIndex, 0, blocking);
+}
+
 function findCurrentBlocking(state: AppState) {
     let blocking = state.blockings.find((blocking) => blocking.id === state.currentBlockingId);
     return blocking;
@@ -129,4 +135,4 @@ function getWindowDimensions() {
     };
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId}
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId, moveBlockingToNewIndex}

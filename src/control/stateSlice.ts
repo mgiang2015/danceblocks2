@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, updateBlockingName, updateCurrentBlockingId, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
+import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {
@@ -42,6 +42,10 @@ export const stateSlice = createSlice({
             let payload: {id: number} = action.payload;
             updateCurrentBlockingId(state, payload.id);
         },
+        moveBlocking: (state, action) => {
+            let payload: { oldIndex: number, targetIndex: number } = action.payload;
+            moveBlockingToNewIndex(state, payload.oldIndex, payload.targetIndex);
+        },
         // dancer
         addDancer: (state) => {
             let currentBlocking = findCurrentBlocking(state);
@@ -80,7 +84,7 @@ export const stateSlice = createSlice({
     }
 })
 
-export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer } = stateSlice.actions
+export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer, moveBlocking } = stateSlice.actions
 export const selectState = (state: RootState) => state.blockings
 export const selectBlockings = (state: RootState) => state.blockings.blockings
 export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.blockings)
