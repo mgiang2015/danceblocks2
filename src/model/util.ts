@@ -60,6 +60,21 @@ function deleteDancerFromBlocking(blocking: Blocking, dancerId: number) {
     }    
 }
 
+function updateBlockingName(state: AppState, blockingId: number, name: string) {
+    let blocking = state.blockings.find((blocking) => blocking.id === blockingId);
+    if (blocking) {
+        blocking.name = name;
+    }
+}
+
+function deleteBlockingFromState(state: AppState, blockingId: number) {
+    let blockingIndex = state.blockings.findIndex((blocking) => blocking.id === blockingId);
+    if (blockingIndex > -1) {
+        state.blockings.splice(blockingIndex, 1);
+    }
+    return blockingIndex;
+}
+
 function findCurrentBlocking(state: AppState) {
     let blocking = state.blockings.find((blocking) => blocking.id === state.currentBlockingId);
     return blocking;
@@ -110,4 +125,4 @@ function getWindowDimensions() {
     };
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking}
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteDancerFromBlocking, findCurrentBlocking, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
+import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, updateBlockingName, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {
@@ -21,6 +21,22 @@ export const stateSlice = createSlice({
         // blocking
         addBlocking: (state) => {
             addNewBlocking(state);
+        },
+        renameBlocking: (state, action) => {
+            let payload: { id: number, name: string } = action.payload;
+            updateBlockingName(state, payload.id, payload.name);
+        },
+        deleteBlocking: (state, action) => {
+            let payload: { id: number } = action.payload;
+            const deletedIndex = deleteBlockingFromState(state, payload.id);
+
+            // set currentBlocking to another blocking
+            if (payload.id === state.currentBlockingId && state.blockings.length > 0) {
+                let nextBlockingIndex = deletedIndex <= 0 ? 0 : deletedIndex - 1;
+                state.currentBlockingId = state.blockings[nextBlockingIndex].id;
+            } else if (state.blockings.length === 0) {
+                addNewDefaultBlocking(state)
+            }
         },
         // dancer
         addDancer: (state) => {
@@ -60,7 +76,7 @@ export const stateSlice = createSlice({
     }
 })
 
-export const { addBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer } = stateSlice.actions
+export const { addBlocking, renameBlocking, deleteBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer } = stateSlice.actions
 export const selectState = (state: RootState) => state.blockings
 export const selectBlockings = (state: RootState) => state.blockings.blockings
 export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.blockings)
