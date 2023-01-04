@@ -67,6 +67,10 @@ function updateBlockingName(state: AppState, blockingId: number, name: string) {
     }
 }
 
+function updateCurrentBlockingId(state: AppState, blockingId: number) {
+    state.currentBlockingId = blockingId;
+}
+
 function deleteBlockingFromState(state: AppState, blockingId: number) {
     let blockingIndex = state.blockings.findIndex((blocking) => blocking.id === blockingId);
     if (blockingIndex > -1) {
@@ -125,4 +129,4 @@ function getWindowDimensions() {
     };
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState}
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId}
