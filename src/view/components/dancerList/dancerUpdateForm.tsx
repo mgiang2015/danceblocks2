@@ -15,7 +15,7 @@ export default function DancerUpdateForm({ dancer }: DancerUpdateFormProps) {
     }
 
     const onColorChange = (event: React.FormEvent<HTMLInputElement>) => {
-        if (event.currentTarget.value != dancer.color) {
+        if (event.currentTarget.value !== dancer.color) {
             changeColor(event.currentTarget.value);
         }        
     }
@@ -31,7 +31,7 @@ export default function DancerUpdateForm({ dancer }: DancerUpdateFormProps) {
     }
 
     const onSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
-        if (name != "") {
+        if (name !== "") {
             rename(name);
             setName("");
         }

@@ -24,7 +24,7 @@ export default function BlockingUpdateForm({ blocking }: BlockingUpdateFormProps
 
     // submit
     const onSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
-        if (name != "") {
+        if (name !== "") {
             rename(name);
             setName("");
         }
