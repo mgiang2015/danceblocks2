@@ -4,6 +4,7 @@ import { useAppSelector } from "../../../control/hooks";
 import { findCurrentBlocking } from "../../../model/util";
 import DancerListItem from "./dancerListItem";
 import { useEffect, useState } from "react";
+import styles from './dancerList.module.css'
 
 export default function DancerList() {
     const [dancersCopy, setDancersCopy] = useState<Dancer[]>([])
@@ -18,13 +19,12 @@ export default function DancerList() {
     }, [currentBlocking])
 
     return (
-        <Stack sx={{ maxHeight: '35em', overflow: 'auto', width: '100%' }}>
-            <ListSubheader sx={{ display: 'flex', justifyContent: 'center' }}>Dancers</ListSubheader>
+        <div className={styles.listContainer}>
             {
                 dancersCopy.map((dancer: Dancer) => {
                     return <DancerListItem key={dancer.id} dancer={dancer}></DancerListItem>
                 })
             }
-        </Stack>
+        </div>
     )
 }

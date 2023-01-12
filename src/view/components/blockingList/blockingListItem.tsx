@@ -20,7 +20,7 @@ export default function BlockingListItem({ blocking, isCurrent, onDragStart, onD
     }
     
     const showEdit = () => {
-        setEdit(true);
+        setEdit(!edit);
     }
 
     const hideEdit = () => {

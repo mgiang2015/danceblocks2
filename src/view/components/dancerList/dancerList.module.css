@@ -1,0 +1,32 @@
+.container {
+    display: grid;
+    width: 80%;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.1em;
+    row-gap: 0.2em;
+    align-items: center;
+}
+
+.container div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container input {
+    width: 50%;
+}
+
+.container button {
+    width: 50%;
+}
+
+.listContainer {
+    width: 100%;
+    max-height: 40em;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

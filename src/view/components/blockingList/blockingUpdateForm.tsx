@@ -8,7 +8,7 @@ interface BlockingUpdateFormProps {
 }
 
 export default function BlockingUpdateForm({ blocking, hideEdit }: BlockingUpdateFormProps) {
-    const [name, setName] = useState("");
+    const [name, setName] = useState(blocking.name);
     const dispatch = useAppDispatch();
     
     // change name
