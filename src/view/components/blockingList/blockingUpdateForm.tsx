@@ -4,9 +4,10 @@ import { deleteBlocking, renameBlocking } from "../../../control/stateSlice";
 
 interface BlockingUpdateFormProps {
     blocking: Blocking
+    hideEdit: () => void
 }
 
-export default function BlockingUpdateForm({ blocking }: BlockingUpdateFormProps) {
+export default function BlockingUpdateForm({ blocking, hideEdit }: BlockingUpdateFormProps) {
     const [name, setName] = useState("");
     const dispatch = useAppDispatch();
     
@@ -28,6 +29,7 @@ export default function BlockingUpdateForm({ blocking }: BlockingUpdateFormProps
             rename(name);
             setName("");
         }
+        hideEdit()
     }
 
     return (

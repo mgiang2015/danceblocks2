@@ -1,0 +1,55 @@
+.blockingList {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    height: 10em;
+    width: 100%;
+    max-width: 100em;
+}
+
+.blockingListItemContainer {
+    display: flex;
+    height: 6em;
+    min-width: fit-content;
+    margin-left: 1em;
+}
+
+.blockingListItemName {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    height: 6em;
+    width: 6em;
+    padding: 0.2em;
+    margin-right: 0.5em;
+    border: 0.1em;
+}
+
+.blockingListItemName button {
+    display: none;
+}
+
+.blockingListItemName:hover button {
+    display: block;
+}
+
+.blockingListItemNameCurrent {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    height: 6em;
+    width: 6em;
+    padding: 0.2em;
+    margin-right: 0.5em;
+    border: 0.4em;
+}
+
+.blockingListItemNameCurrent button {
+    display: none;
+}
+
+.blockingListItemNameCurrent:hover button {
+    display: inline-block;
+}

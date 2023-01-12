@@ -1,8 +1,8 @@
-import { ListSubheader, Stack, Typography } from "@mui/material";
 import BlockingListItem from "./blockingListItem";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import { selectBlockings, selectCurrentBlocking, moveBlocking } from "../../../control/stateSlice";
 import { useState } from "react";
+import styles from './blockingList.module.css'
 
 export default function BlockingList() {
     const blockings = useAppSelector(selectBlockings);
@@ -38,13 +38,12 @@ export default function BlockingList() {
     }
 
     return (
-        <Stack onDrop={onDrop} onDragOver={onDragOver} direction="row" spacing={2} sx={{ display: 'flex', alignItems: 'center', height: '100%', maxWidth: '85em', overflow: 'auto' }}>
-            <ListSubheader sx={{ display: 'flex', justifyContent: 'center' }}>Blockings</ListSubheader>
+        <div onDrop={onDrop} onDragOver={onDragOver} className={styles.blockingList} >
             {
                 blockings.map((blocking, index) => {
                     return <BlockingListItem onDragStart={(e) => onDragStart(e, index)} onDragEnter={(e) => onDragEnter(e, index)} key={blocking.id} isCurrent={currentBlocking ? currentBlocking.id === blocking.id : false} blocking={blocking}></BlockingListItem>
                 })
             }
-        </Stack>
+        </div>
     )
 }
