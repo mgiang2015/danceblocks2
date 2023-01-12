@@ -4,7 +4,12 @@
     overflow: auto;
     height: 10em;
     width: 100%;
-    max-width: 100em;
+    max-width: 110em;
+}
+
+.blockingList p {
+    margin-right: 1em;
+    margin-left: 1em;
 }
 
 .blockingListItemContainer {

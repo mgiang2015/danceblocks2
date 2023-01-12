@@ -39,6 +39,7 @@ export default function BlockingList() {
 
     return (
         <div onDrop={onDrop} onDragOver={onDragOver} className={styles.blockingList} >
+            <p>{"Blockings"}</p>
             {
                 blockings.map((blocking, index) => {
                     return <BlockingListItem onDragStart={(e) => onDragStart(e, index)} onDragEnter={(e) => onDragEnter(e, index)} key={blocking.id} isCurrent={currentBlocking ? currentBlocking.id === blocking.id : false} blocking={blocking}></BlockingListItem>

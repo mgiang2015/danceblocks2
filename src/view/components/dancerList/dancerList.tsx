@@ -1,7 +1,5 @@
-import { List, ListSubheader, Stack, Typography } from "@mui/material";
 import { selectCurrentBlocking, selectState } from "../../../control/stateSlice";
 import { useAppSelector } from "../../../control/hooks";
-import { findCurrentBlocking } from "../../../model/util";
 import DancerListItem from "./dancerListItem";
 import { useEffect, useState } from "react";
 import styles from './dancerList.module.css'
@@ -20,6 +18,7 @@ export default function DancerList() {
 
     return (
         <div className={styles.listContainer}>
+            <p>{"Dancers"}</p>
             {
                 dancersCopy.map((dancer: Dancer) => {
                     return <DancerListItem key={dancer.id} dancer={dancer}></DancerListItem>
