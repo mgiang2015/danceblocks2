@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import StorageApi from "../model/storageApi";
 import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {
+    if (StorageApi.getState()) {
+        return StorageApi.getState()!;
+    }
+
     let state: AppState = {
         blockingCount: 0,
         blockings: [],
