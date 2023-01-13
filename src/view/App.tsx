@@ -13,6 +13,8 @@ const padding = '0.5em'
 function App() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const [view3d, setView3d] = useState(false);
+  // make stage dimensions a state here too for editing dimensions
+
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());

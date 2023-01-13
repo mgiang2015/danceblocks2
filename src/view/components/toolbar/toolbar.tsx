@@ -1,6 +1,6 @@
 import { ListSubheader, Stack } from "@mui/material";
-import { addBlocking, addDancer } from "../../../control/stateSlice";
-import { useAppDispatch } from "../../../control/hooks";
+import { addBlocking, addDancer, selectState } from "../../../control/stateSlice";
+import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import ToolbarItem from "./toolbarItem";
 
 interface ToolbarProps {
@@ -9,6 +9,7 @@ interface ToolbarProps {
 
 export default function Toolbar({ tools }: ToolbarProps) {
     const dispatch = useAppDispatch();
+    const appState = useAppSelector(selectState);
 
     let toolbarFunctionalities: Tool[] = [
         {
@@ -17,6 +18,27 @@ export default function Toolbar({ tools }: ToolbarProps) {
         },{
             label: "Add Dancer",
             listener: () => dispatch(addDancer())
+        },{
+            label: "Share / Export Project",
+            listener: () => {
+                // stringify first
+                const jsonString = JSON.stringify(appState);
+
+                // blobify to allow download
+                const blob = new Blob([jsonString], { type: "application/json" });
+                const href = URL.createObjectURL(blob);
+                
+                // create a hidden link and click it for the user
+                const link = document.createElement('a');
+                link.download = "danceblocksProject.json";
+                link.href = href;
+
+                // click the link
+                link.click();
+
+                // remove link
+                link.remove();
+            }
         }
     ];
 
@@ -25,11 +47,11 @@ export default function Toolbar({ tools }: ToolbarProps) {
     }
 
     return (
-    <Stack sx={{ maxHeight: '35em', overflow: 'auto', width: '100%' }}>
-        <ListSubheader sx={{ display: 'flex', justifyContent: 'center' }}>Tools</ListSubheader>
+    <div>
+        <p>Tools</p>
         {toolbarFunctionalities.map(({label, listener}) => {
             return <ToolbarItem key={label} label={label} listener={listener} />
         })}
-    </Stack>
+    </div>
     )
 }
