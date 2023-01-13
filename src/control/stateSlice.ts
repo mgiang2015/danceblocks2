@@ -95,6 +95,14 @@ export const stateSlice = createSlice({
             const current3d = state.view3d;
             state.view3d = !current3d;
         },
+        setStageDepth: (state, action) => {
+            let payload: { depth: number } = action.payload;
+            state.stageDepth = payload.depth;
+        },
+        setStageWidth: (state, action) => {
+            let payload: { width: number } = action.payload;
+            state.stageWidth = payload.width;
+        },
         // the whole state
         setNewState: (state, action) => {
             let payload: { newState: AppState } = action.payload;
@@ -107,6 +115,8 @@ export const stateSlice = createSlice({
 
 export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer, moveBlocking, toggle3d, setNewState } = stateSlice.actions
 export const selectState = (state: RootState) => state.appState
+export const selectStageWidth = (state: RootState) => state.appState.stageWidth
+export const selectStageDepth = (state: RootState) => state.appState.stageDepth
 export const selectBlockings = (state: RootState) => state.appState.blockings
 export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.appState)
 export const selectView3d = (state: RootState) => state.appState.view3d;

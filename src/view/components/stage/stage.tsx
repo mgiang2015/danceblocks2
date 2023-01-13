@@ -1,10 +1,11 @@
-import { moveDancer, selectCurrentBlocking, selectState } from "../../../control/stateSlice";
+import { moveDancer, selectCurrentBlocking, selectStageDepth, selectStageWidth, selectState } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
-import { UccStageDepth, UccStageTotalWidth } from "../../../control/const";
 
 export default function Stage() {
     const dispatch = useAppDispatch();
+    const stageDepth = useAppSelector(selectStageDepth);
+    const stageWidth = useAppSelector(selectStageWidth);
     let currentBlocking = useAppSelector(selectCurrentBlocking);
     let dancers = (currentBlocking && currentBlocking.dancers) || []
 
@@ -22,7 +23,7 @@ export default function Stage() {
     }
 
     return (
-        <div onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: UccStageTotalWidth, height: UccStageDepth, border: "0.1em solid black" }}>
+        <div onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
             {dancers.map((dancer) => {
                 return <StageDancer key={dancer.id} dancer={dancer}/>
             })}
