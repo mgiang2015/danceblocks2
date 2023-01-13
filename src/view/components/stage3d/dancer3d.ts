@@ -69,7 +69,7 @@ const buildRightLeg = () => {
   return rightLeg;
 }
 
-const buildDancer = (xCoord: number, yCoord: number) => {
+const buildDancer = (xCoord: number, yCoord: number, color: string) => {
   const head = buildHead();
   const neck = buildNeck();
   const torso = buildTorso();
@@ -83,6 +83,16 @@ const buildDancer = (xCoord: number, yCoord: number) => {
   if (dancer) {
     dancer.position.x = xCoord;
     dancer.position.z = -yCoord;
+    // build material for dancers
+    const dancerMaterial = new StandardMaterial("dancerMaterial");
+    
+    // convert dancer color to rgb
+    var r = parseInt(color.slice(1, 3), 16),
+    g = parseInt(color.slice(3, 5), 16),
+    b = parseInt(color.slice(5, 7), 16);
+    dancerMaterial.diffuseColor = new Color3(r / 255, g / 255, b / 255);
+
+    dancer.material = dancerMaterial;
   }
 
   return dancer;

@@ -1,6 +1,7 @@
 .App {
-  height: 58em;
+  height: 58.75em;
   min-height: fit-content;
+  background-color: #FBF0D9;
 }
 
 .ToolbarStageDancerList {
@@ -36,6 +37,8 @@ button {
   background-color: inherit;
   border: none;
   font-size: 1em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   cursor: pointer;
 }
 

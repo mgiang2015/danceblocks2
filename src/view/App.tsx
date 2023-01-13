@@ -12,16 +12,7 @@ import { selectView3d } from '../control/stateSlice';
 const padding = '0.5em'
 
 function App() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
   const view3d = useAppSelector(selectView3d);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <div className="App">
