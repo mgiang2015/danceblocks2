@@ -8,8 +8,6 @@ import Stage3d from './components/stage3d/stage3d';
 import { useAppSelector } from '../control/hooks';
 import { selectView3d } from '../control/stateSlice';
 
-const padding = '0.5em'
-
 function App() {
   const view3d = useAppSelector(selectView3d);
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { FreeCamera, Color3, Vector3, HemisphericLight, MeshBuilder, Scene, Mesh, SceneLoader, ArcRotateCamera, Material, StandardMaterial } from "@babylonjs/core";
+import { Color3, MeshBuilder, Mesh, StandardMaterial } from "@babylonjs/core";
 import { scalingConstant } from "../../../control/const";
 
 // Constants

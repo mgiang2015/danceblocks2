@@ -1,4 +1,4 @@
-import { FreeCamera, Color3, Vector3, HemisphericLight, MeshBuilder, Scene, Mesh, SceneLoader, ArcRotateCamera, Material, StandardMaterial, Color4 } from "@babylonjs/core";
+import { Color3, Vector3, HemisphericLight, MeshBuilder, Scene, ArcRotateCamera, StandardMaterial, Color4 } from "@babylonjs/core";
 import SceneComponent from 'babylonjs-hook'; // if you install 'babylonjs-hook' NPM.
 import { useAppSelector } from "../../../control/hooks";
 import { selectCurrentBlocking, selectStageDepth, selectStageWidth } from "../../../control/stateSlice";
