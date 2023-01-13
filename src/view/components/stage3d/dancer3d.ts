@@ -2,9 +2,9 @@ import { FreeCamera, Color3, Vector3, HemisphericLight, MeshBuilder, Scene, Mesh
 import { scalingConstant } from "../../../control/const";
 
 // Constants
-const headHeight = 22.5 / scalingConstant;
-const headWidth = 22.5 / scalingConstant;
-const headDepth = 22.5 / scalingConstant;
+const headHeight = 0.225 / scalingConstant;
+const headWidth = 0.225 / scalingConstant;
+const headDepth = 0.225 / scalingConstant;
 
 const buildHead = () => {
   const head = MeshBuilder.CreateBox("head", { width: headWidth, height: headHeight, depth: headDepth });

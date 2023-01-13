@@ -38,6 +38,7 @@ button {
   background-color: inherit;
   border: none;
   font-size: 1em;
+  min-width: fit-content;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   cursor: pointer;

@@ -1,13 +1,17 @@
-import { addBlocking, addDancer, selectState, setNewState, toggle3d } from "../../../control/stateSlice";
+import { addBlocking, addDancer, selectState, setNewState, toggle3d, updateStageDepth, updateStageWidth } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import { useEffect, useState } from "react";
 import styles from "./toolbar.module.css"
+import { MaxStageDepth, MaxStageWidth, scalingConstant } from "../../../control/const";
 
 export default function Toolbar() {
     const dispatch = useAppDispatch();
     const appState = useAppSelector(selectState);
     const [uploadData, setUploadData] = useState(null);
     const [uploadError, setUploadError] = useState("");
+    const [editDimension, setEditDimension] = useState(false);
+    const [inputStageDepth, setInputStageDepth] = useState(`${appState.stageDepth * scalingConstant}`);
+    const [inputStageWidth, setInputStageWidth] = useState(`${appState.stageWidth * scalingConstant}`);
 
     useEffect(() => {
         if (uploadData !== null) {
@@ -65,9 +69,53 @@ export default function Toolbar() {
         }
     }
 
+    const onUpdateDimension = () => {
+        let newDepth = parseFloat(inputStageDepth) / scalingConstant;
+        let newWidth = parseFloat(inputStageWidth) / scalingConstant;
+
+        // we want to keep depth : width ratio the same
+        // Eg width is 4, depth is 3. I downscale depth to 1.5. newWidth = newDepth / oldDepth * oldWidth =  1.5 / 3 * 4 = 2
+        if (newDepth > MaxStageDepth) {
+            let originalNewDepth = newDepth;
+            newDepth = MaxStageDepth;
+            newWidth = newDepth / originalNewDepth * newWidth;
+        }
+
+        if (newWidth > MaxStageWidth) {
+            let originalNewWidth = newWidth;
+            newWidth = MaxStageWidth;
+            newDepth = newWidth / originalNewWidth * newDepth;
+        }
+
+        // dispatch
+        dispatch(updateStageDepth({ depth: newDepth }));
+        dispatch(updateStageWidth({ width: newWidth }));
+
+        setEditDimension(false);
+    }
+
+    const onReset = () => {
+        dispatch(updateStageDepth({ depth: MaxStageDepth }));
+        dispatch(updateStageWidth({ width: MaxStageWidth }));       
+        setEditDimension(false);
+    }
+
     return (
     <div className={styles.container}>
         <p>Tools</p>
+        <button onClick={() => setEditDimension(!editDimension)}>{"Change stage dimensions"}</button>
+        {
+            editDimension ?
+            <form className={styles.dimensionForm}>
+                <p>{"Stage depth (m)"}</p>
+                <input type={"number"} value={inputStageDepth} onChange={(e) => setInputStageDepth(e.currentTarget.value)} />
+                <p>{"Stage width (m)"}</p>
+                <input type={"number"} value={inputStageWidth} onChange={(e) => setInputStageWidth(e.currentTarget.value)} />
+                <button onClick={onUpdateDimension}>{"Update"}</button>
+                <button onClick={onReset}>{"Reset"}</button>
+            </form>
+            : null
+        }        
         <button onClick={() => dispatch(addBlocking())}>{"Add Blocking"}</button>
         <button onClick={() => dispatch(addDancer())}>{"Add Dancer"}</button>
         <button onClick={() => dispatch(toggle3d())}>{appState.view3d ? "Exit 3D" : "View 3D"}</button>
