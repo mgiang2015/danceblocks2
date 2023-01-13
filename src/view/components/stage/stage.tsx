@@ -1,6 +1,7 @@
 import { moveDancer, selectCurrentBlocking, selectStageDepth, selectStageWidth, selectState } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
+import styles from "./stage.module.css"
 
 export default function Stage() {
     const dispatch = useAppDispatch();
@@ -23,7 +24,20 @@ export default function Stage() {
     }
 
     return (
-        <div onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
+        <div className={styles.stage} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
+            <span className={styles.frontCenter}>{"|"}</span>
+            <span className={styles.frontLeftQuarter}>{"|"}</span>
+            <span className={styles.frontRightQuarter}>{"|"}</span>
+            <span className={styles.backCenter}>{"|"}</span>
+            <span className={styles.backLeftQuarter}>{"|"}</span>
+            <span className={styles.backRightQuarter}>{"|"}</span>
+            <span className={styles.rightCenter}>{"-"}</span>
+            <span className={styles.rightUpperQuarter}>{"-"}</span>
+            <span className={styles.rightLowerQuarter}>{"-"}</span>
+            <span className={styles.leftCenter}>{"-"}</span>
+            <span className={styles.leftUpperQuarter}>{"-"}</span>
+            <span className={styles.leftLowerQuarter}>{"-"}</span>
+            <span className={styles.centerCenter}>{"+"}</span>
             {dancers.map((dancer) => {
                 return <StageDancer key={dancer.id} dancer={dancer}/>
             })}
