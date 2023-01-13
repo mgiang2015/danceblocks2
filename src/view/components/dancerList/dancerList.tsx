@@ -1,4 +1,4 @@
-import { selectCurrentBlocking, selectState } from "../../../control/stateSlice";
+import { selectCurrentBlocking } from "../../../control/stateSlice";
 import { useAppSelector } from "../../../control/hooks";
 import DancerListItem from "./dancerListItem";
 import { useEffect, useState } from "react";

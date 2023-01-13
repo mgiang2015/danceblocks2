@@ -18,7 +18,7 @@ export default function Toolbar() {
             let newState = uploadData as AppState;
             dispatch(setNewState({ newState: newState }));
         }
-    }, [uploadData])
+    }, [dispatch, uploadData])
 
     const downloadProject = () => {
         // stringify first

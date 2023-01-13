@@ -46,10 +46,12 @@ export default function Stage3d() {
     /**
      * Will run on every frame render.  We are spinning the box on y-axis.
      * This can be used to implement cannon / special visuals later on
-     */
+        
     const onRender = (scene: Scene) => {
-    
+        
     };
+    */
+    
       
     return (
         <div style={{height: stageDepth, width: stageWidth}}>

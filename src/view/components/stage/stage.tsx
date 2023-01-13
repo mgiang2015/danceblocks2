@@ -1,4 +1,4 @@
-import { moveDancer, selectCurrentBlocking, selectStageDepth, selectStageWidth, selectState } from "../../../control/stateSlice";
+import { moveDancer, selectCurrentBlocking, selectStageDepth, selectStageWidth } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
 import styles from "./stage.module.css"
