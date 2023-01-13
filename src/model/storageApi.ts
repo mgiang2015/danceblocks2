@@ -1,3 +1,5 @@
+import { MaxStageDepth, MaxStageWidth } from "../control/const";
+
 function debounce(func: Function, ms = 300) {
     let timeoutId: ReturnType<typeof setTimeout>;
     return function(this: any, ...args: any[]) {
@@ -24,6 +26,12 @@ class StorageApi {
             let state: AppState = JSON.parse(localStorage.getItem("state") || "{}");
             if (isAppState(state)) {
                 state.view3d = false;
+                if (!state.stageWidth) {
+                    state.stageWidth = MaxStageWidth;
+                }
+                if (!state.stageDepth) {
+                    state.stageDepth = MaxStageDepth;
+                }
                 return state;
             } else {
                 return undefined;
