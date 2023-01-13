@@ -23,6 +23,7 @@ class StorageApi {
         } else {
             let state: AppState = JSON.parse(localStorage.getItem("state") || "{}");
             if (isAppState(state)) {
+                state.view3d = false;
                 return state;
             } else {
                 return undefined;
