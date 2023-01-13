@@ -122,6 +122,8 @@ export default function Toolbar() {
         <button onClick={() => downloadProject()}>{"Share Project"}</button>
         <input type={"file"} id="upload" onChange={onFileUpload} hidden={true}/>
         <label htmlFor="upload">{"Upload Project File"}</label>
+        <button><a href={"https://github.com/mgiang2015/danceblocks2/"} target="#">User Guide</a></button>
+        <button><a href={"https://forms.gle/5FxpjidoBSaHATVS9"} target="#">Feedback</a></button>
     </div>
     )
 }
