@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import blockingsReducer from './stateSlice'
+import appStateReducer from './stateSlice'
 
 export const store = configureStore({
     reducer: {
-        blockings: blockingsReducer
+        appState: appStateReducer
     }
 })
 

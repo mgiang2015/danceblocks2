@@ -7,13 +7,14 @@ import DancerList from './components/dancerList/dancerList';
 import { useEffect, useState } from 'react';
 import { getWindowDimensions } from '../model/util';
 import Stage3d from './components/stage3d/stage3d';
+import { useAppSelector } from '../control/hooks';
+import { selectView3d } from '../control/stateSlice';
 
 const padding = '0.5em'
 
 function App() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-  const [view3d, setView3d] = useState(false);
-  // make stage dimensions a state here too for editing dimensions
+  const view3d = useAppSelector(selectView3d);
 
   useEffect(() => {
     function handleResize() {
@@ -22,19 +23,12 @@ function App() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
-  const toggle3d = () => {
-    setView3d(!view3d);
-  }
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: windowDimensions.height }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-around', height: '200em', border: 1}}>
         <Box sx={{ display: 'flex', justifyContent: 'center', border: 1, width: "100%" }}>
-          <Toolbar tools={[{
-            label: view3d ? "Exit 3D" : "View 3D",
-            listener: toggle3d
-          }]}/>
+          <Toolbar />
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', border: 1  }}>
           {

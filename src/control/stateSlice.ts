@@ -6,7 +6,8 @@ const initialState: () => AppState = () => {
     let state: AppState = {
         blockingCount: 0,
         blockings: [],
-        currentBlockingId: -1
+        currentBlockingId: -1,
+        view3d: false
     }
 
     addNewDefaultBlocking(state)
@@ -80,13 +81,26 @@ export const stateSlice = createSlice({
             if (currentBlocking) {
                 deleteDancerFromBlocking(currentBlocking, payload.id);
             }
+        },
+        // stage
+        toggle3d: (state) => {
+            const current3d = state.view3d;
+            state.view3d = !current3d;
+        },
+        // the whole state
+        setNewState: (state, action) => {
+            let payload: { newState: AppState } = action.payload;
+            state.blockingCount = payload.newState.blockingCount;
+            state.currentBlockingId = payload.newState.currentBlockingId;
+            state.blockings = payload.newState.blockings;
         }
     }
 })
 
-export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer, moveBlocking } = stateSlice.actions
-export const selectState = (state: RootState) => state.blockings
-export const selectBlockings = (state: RootState) => state.blockings.blockings
-export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.blockings)
+export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer, moveBlocking, toggle3d, setNewState } = stateSlice.actions
+export const selectState = (state: RootState) => state.appState
+export const selectBlockings = (state: RootState) => state.appState.blockings
+export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.appState)
+export const selectView3d = (state: RootState) => state.appState.view3d;
 
 export default stateSlice.reducer

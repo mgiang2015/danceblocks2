@@ -1,57 +1,78 @@
-import { ListSubheader, Stack } from "@mui/material";
-import { addBlocking, addDancer, selectState } from "../../../control/stateSlice";
+import { addBlocking, addDancer, selectState, setNewState, toggle3d } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
-import ToolbarItem from "./toolbarItem";
+import { useEffect, useState } from "react";
 
-interface ToolbarProps {
-    tools?: Tool[]
-}
-
-export default function Toolbar({ tools }: ToolbarProps) {
+export default function Toolbar() {
     const dispatch = useAppDispatch();
     const appState = useAppSelector(selectState);
+    const [uploadData, setUploadData] = useState(null);
+    const [uploadError, setUploadError] = useState("");
 
-    let toolbarFunctionalities: Tool[] = [
-        {
-            label: "Add Blocking",
-            listener: () => dispatch(addBlocking())
-        },{
-            label: "Add Dancer",
-            listener: () => dispatch(addDancer())
-        },{
-            label: "Share / Export Project",
-            listener: () => {
-                // stringify first
-                const jsonString = JSON.stringify(appState);
+    useEffect(() => {
+        if (uploadData !== null) {
+            let newState = uploadData as AppState;
+            dispatch(setNewState({ newState: newState }));
+        }
+    }, [uploadData])
 
-                // blobify to allow download
-                const blob = new Blob([jsonString], { type: "application/json" });
-                const href = URL.createObjectURL(blob);
-                
-                // create a hidden link and click it for the user
-                const link = document.createElement('a');
-                link.download = "danceblocksProject.json";
-                link.href = href;
+    const downloadProject = () => {
+        // stringify first
+        const jsonString = JSON.stringify(appState);
 
-                // click the link
-                link.click();
+        // blobify to allow download
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const href = URL.createObjectURL(blob);
+        
+        // create a hidden link and click it for the user
+        const link = document.createElement('a');
+        link.download = "danceblocksProject.json";
+        link.href = href;
 
-                // remove link
-                link.remove();
+        // click the link
+        link.click();
+
+        // remove link
+        link.remove();
+    }
+
+    const onFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const uploadFile = event.currentTarget.files ? event.currentTarget.files[0] : null;
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            try {
+                if (fileReader.result !== null) {
+                        console.log(fileReader.result as string);
+                        setUploadData(JSON.parse(fileReader.result as string))
+                        setUploadError("");
+                        console.log(JSON.parse(fileReader.result as string) as AppState)
+                }
+            } catch (err) {
+                if (typeof err === "string") {
+                    setUploadError(err)
+                } else if (err instanceof Error) {
+                    setUploadError(err.message) // works, `err` narrowed to Error
+                } else {
+                    setUploadError("** Error uploading file **");
+                }
+
+                console.log(uploadError);
             }
         }
-    ];
 
-    if (tools) {
-        toolbarFunctionalities = [...toolbarFunctionalities, ...tools]
+        if (uploadFile !== null) {
+            fileReader.readAsText(uploadFile)
+        }
     }
 
     return (
     <div>
         <p>Tools</p>
-        {toolbarFunctionalities.map(({label, listener}) => {
-            return <ToolbarItem key={label} label={label} listener={listener} />
-        })}
+        <button onClick={() => dispatch(addBlocking())}>{"Add Blocking"}</button>
+        <button onClick={() => dispatch(addDancer())}>{"Add Dancer"}</button>
+        <button onClick={() => dispatch(toggle3d())}>{appState.view3d ? "Exit 3D" : "View 3D"}</button>
+        <button onClick={() => downloadProject()}>{"Export / Share Project"}</button>
+        <input type={"file"} id="upload" onChange={onFileUpload} />
+        <label htmlFor="upload">{"Upload Project File"}</label>
     </div>
     )
 }

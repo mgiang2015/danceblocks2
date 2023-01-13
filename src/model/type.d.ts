@@ -17,9 +17,5 @@ interface AppState {
     blockingCount: number
     blockings: Blocking[]
     currentBlockingId: number
-}
-
-interface Tool {
-    label: string
-    listener: () => void
+    view3d: boolean
 }
