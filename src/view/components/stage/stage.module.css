@@ -13,64 +13,73 @@
 .frontCenter {
     top: 100%;
     left: 50%;
-    transform: translate(-0%, -100%);
+    transform: translate(-0%, -90%);
 }
 
 .frontLeftQuarter {
     top: 100%;
     left: 25%;
-    transform: translate(-0%, -100%);
+    transform: translate(-0%, -90%);
 }
 
 .frontRightQuarter {
     top: 100%;
     right: 25%;
-    transform: translate(-0%, -100%);
+    transform: translate(-0%, -90%);
 }
 
 .backCenter {
     top: 0%;
     left: 50%;
+    transform: translate(-0%, -25%);
 }
 
 .backLeftQuarter {
     top: 0%;
     left: 25%;
+    transform: translate(-0%, -25%);
 }
 
 .backRightQuarter {
     top: 0%;
     right: 25%;
+    transform: translate(-0%, -25%);
 }
 
 .rightCenter {
     top: 50%;
     right: 0%;
+    transform: translate(20%, -0%);
 }
 
 .rightUpperQuarter {
     top: 25%;
     right: 0%;
+    transform: translate(20%, -0%);
 }
 
 .rightLowerQuarter {
     top: 75%;
     right: 0%;
+    transform: translate(20%, -0%);
 }
 
 .leftCenter {
     top: 50%;
     left: 0%;
+    transform: translate(-20%, -0%);
 }
 
 .leftUpperQuarter {
     top: 25%;
     left: 0%;
+    transform: translate(-20%, -0%);
 }
 
 .leftLowerQuarter {
     top: 75%;
     left: 0%;
+    transform: translate(-20%, -0%);
 }
 
 .centerCenter {
