@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../../control/hooks";
 import { deleteBlocking, renameBlocking } from "../../../control/stateSlice";
+import styles from "./blockingList.module.css";
 
 interface BlockingUpdateFormProps {
     blocking: Blocking
@@ -33,15 +34,11 @@ export default function BlockingUpdateForm({ blocking, hideEdit }: BlockingUpdat
     }
 
     return (
-        <form>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <label htmlFor="name">Name</label>
-                <input type={"text"} value={name} style={{ width: '50%' }} onChange={onNameChange} />
-            </div>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <button type="button" onClick={onSubmit} style={{ width: '50%' }}>Update</button>
-                <button type="button" onClick={removeBlocking} style={{ width: '50%' }}>Delete</button>
-            </div>
+        <form className={styles.updateForm}>
+            <p>Name</p>
+            <input type={"text"} value={name} onChange={onNameChange} />
+            <button type="button" onClick={onSubmit}>Update</button>
+            <button type="button" onClick={removeBlocking}>Delete</button>
         </form>
     )
 

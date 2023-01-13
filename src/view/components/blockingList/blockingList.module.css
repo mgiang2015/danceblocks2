@@ -58,3 +58,20 @@
 .blockingListItemNameCurrent:hover button {
     display: inline-block;
 }
+
+.updateForm {
+    display: grid;
+    grid-template-columns: 7em 7em;
+    grid-template-rows: 3em 3em;
+    align-items: center;
+}
+
+.updateForm p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateForm button {
+    height: 100%;
+}

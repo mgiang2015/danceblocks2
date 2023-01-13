@@ -1,10 +1,14 @@
 .container {
     display: grid;
-    width: 80%;
+    width: 100%;
     grid-template-columns: 1fr 1fr;
     column-gap: 0.1em;
-    row-gap: 0.2em;
+    row-gap: 1em;
     align-items: center;
+}
+
+.container:hover {
+    background-color: #DCDCDC;
 }
 
 .container div {
@@ -12,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .container input {

@@ -1,6 +1,5 @@
 import './App.css';
 import BlockingList from './components/blockingList/blockingList';
-import { Box } from '@mui/material';
 import Toolbar from './components/toolbar/toolbar';
 import Stage from './components/stage/stage';
 import DancerList from './components/dancerList/dancerList';
@@ -25,24 +24,24 @@ function App() {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: windowDimensions.height }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', height: '200em', border: 1}}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', border: 1, width: "100%" }}>
+    <div className="App">
+      <div className="ToolbarStageDancerList">
+        <div className="Toolbar">
           <Toolbar />
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', border: 1  }}>
+        </div>
+        <div className="Stage">
           {
             view3d ? <Stage3d /> : <Stage />
           }
-        </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', border: 1, width: "100%" }}>
+        </div>
+        <div className='DancerList'>
           <DancerList />
-        </Box>
-      </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', height: '100%', border: 1, paddingLeft: padding}}>
+        </div>
+      </div>
+      <div>
         <BlockingList />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

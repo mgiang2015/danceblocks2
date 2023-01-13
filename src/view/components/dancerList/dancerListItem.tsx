@@ -57,7 +57,7 @@ export default function DancerListItem({ dancer }: DancerListItemProp): JSX.Elem
                 edit
                 ? 
                 <div>
-                    <label className={styles.gridItem} htmlFor="name">Name</label>
+                    <p className={styles.gridItem}>Name</p>
                 </div>
                 : null
             }
@@ -73,7 +73,7 @@ export default function DancerListItem({ dancer }: DancerListItemProp): JSX.Elem
                 edit
                 ?
                 <div>
-                    <label className={styles.gridItem} htmlFor="color">Color</label>
+                    <p className={styles.gridItem}>Color</p>
                 </div>
                 : null
             }
