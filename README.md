@@ -21,7 +21,7 @@ This project will remain open-source and free for the Dance Community to use, sh
 6. **Changing stage dimensions**. You can change the stage dimensions to fit the stage you are working with. Stages that are too large will be scaled down to fit the screen, but the ratio will be kept.
 7. **Share your blockings**. You can download the project and share it with others so that dancers can look through all the blockings and co-choreographers can work on the blockings too!
 
-I've created a google form for feedback, suggestion and bug reports as well! I appreciate every 
+I've created a google form for feedback, suggestion and bug reports as well! I appreciate every suggestion that can contribute to future iterations to this project.
 
 ## Shortcomings
 1. The 3D feature is still work in progress. Due to my lack of 3D modeling experience, I've model dancers with cuboids which resulted in roblox-looking dancers. This will have to do until I manage to find help or pick up 3D modeling myself.
@@ -30,7 +30,7 @@ I've created a google form for feedback, suggestion and bug reports as well! I a
 
 ## What's next?
 1. Go to [Danceblocks](https://danceblocks.netlify.app/) and try it out! The feedback link is in the toolbar.
-2. Head over to my user guide at `docs/userGuide.md` for more explanation about each feature.
+2. Head over to my [user guide](https://github.com/mgiang2015/danceblocks2/blob/main/src/docs/userGuide.md) for more explanation about each feature.
 3. If you're a 3D or UI/UX designer and would like to help me out with improving the app's design, please contact me at the details below!
 4. If you're a developer and would like to contribute to this repo, head over to my developer guide at `docs/developerGuide.md`. You can alternatively clone the repo and run `npm install && npm run start` to play around as well. This will be my first time doing something like this so the documentation might not be the best, I encourage you to contact me as well.
 
