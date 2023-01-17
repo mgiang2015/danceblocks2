@@ -30,7 +30,7 @@ I've created a google form for feedback, suggestion and bug reports as well! I a
 
 ## What's next?
 1. Go to [Danceblocks](https://danceblocks.netlify.app/) and try it out! The feedback link is in the toolbar.
-2. Head over to my [user guide](https://github.com/mgiang2015/danceblocks2/blob/main/src/docs/userGuide.md) for more explanation about each feature.
+2. Head over to my [user guide](https://github.com/mgiang2015/danceblocks2/blob/main/docs/userGuide.md) for more explanation about each feature.
 3. If you're a 3D or UI/UX designer and would like to help me out with improving the app's design, please contact me at the details below!
 4. If you're a developer and would like to contribute to this repo, head over to my developer guide at `docs/developerGuide.md`. You can alternatively clone the repo and run `npm install && npm run start` to play around as well. This will be my first time doing something like this so the documentation might not be the best, I encourage you to contact me as well.
 
