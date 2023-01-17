@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Danceblocks
+[Danceblocks](https://danceblocks.netlify.app/) is a web-based application that helps choreographers visualise their blockings from bird's eye view and renders the 3D audience view.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Purpose
+This project is created to help choreographers visualise 3D audience view, which I find useful for many use-case: 
 
-## Available Scripts
+1. See how the blocking looks even before blocking your dancers.
+2. Creating visual effects for audiences at the side.
+3. Planning for 360-degree stages for competitions such as Super24.
 
-In the project directory, you can run:
+and so on...
 
-### `npm start`
+This project will remain open-source and free for the Dance Community to use, share, feedback and improve upon.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+1. **3D Rendering**: Danceblocks can render the audience view of a blocking. You can zoom in and out through mouse scrolls, and rotate the stage around to see it from multiple perspectives. Remember to exit 3D view first before any further editing.
+2. **Add, delete and edit dancers**. Assign each dancer a name and color so that they can be easily differentiated. This can be done by clicking the dancer list.
+3. You can **move dancers around** by dragging them over to where you want them to be.
+4. **Add blocking**. You can change the blocking's name after it's been created. The new blocking preserves dancers so that you don't have to add them in again one by one. View a blocking by clicking on it in the blocking list.
+5. **Change blocking ordering**. Have a blocking that you'd rather have at the intro instead of the chorus? Simply click and drag that blocking over to the front.
+6. **Changing stage dimensions**. You can change the stage dimensions to fit the stage you are working with. Stages that are too large will be scaled down to fit the screen, but the ratio will be kept.
+7. **Share your blockings**. You can download the project and share it with others so that dancers can look through all the blockings and co-choreographers can work on the blockings too!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I've created a google form for feedback, suggestion and bug reports as well! I appreciate every 
 
-### `npm test`
+## Shortcomings
+1. The 3D feature is still work in progress. Due to my lack of 3D modeling experience, I've model dancers with cuboids which resulted in roblox-looking dancers. This will have to do until I manage to find help or pick up 3D modeling myself.
+2. The current app does not work well on small and touch devices (i.e. mobile phones and tablets) unless you use them with a mouse. This is because features are implemented using mouse drag, hover and clicks. This will be worked on in the future!
+3. The updates and improvements might be a little slow. I don't have the proper channels to announce any updates yet, but if there's enough interest I might start a telegram group / channel just for updates on Danceblocks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What's next?
+1. Go to [Danceblocks](https://danceblocks.netlify.app/) and try it out! The feedback link is in the toolbar.
+2. Head over to my user guide at `docs/userGuide.md` for more explanation about each feature.
+3. If you're a 3D or UI/UX designer and would like to help me out with improving the app's design, please contact me at the details below!
+4. If you're a developer and would like to contribute to this repo, head over to my developer guide at `docs/developerGuide.md`. You can alternatively clone the repo and run `npm install && npm run start` to play around as well. This will be my first time doing something like this so the documentation might not be the best, I encourage you to contact me as well.
 
-### `npm run build`
+## Contact info
+Telegram: [@LEEEEgendary](https://t.me/LEEEEgendary)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Instagram: [@thedecoyg](https://instagram.com/thedecoyg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+LinkedIn: [Le Minh Giang](https://www.linkedin.com/in/le-minh-giang-951a59163/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Future plans
+1. Make a better, more realistic dancer 3D model.
+2. Allow users to change each dancer's height and direction they are facing.
+3. Allow users to add lighting to the stage. Commonly-used lighting such as spotlight and wash will be first.
+4. Allow users to add music track and assign timestamp to each blocking.
+5. Animate when dancers change from 1 blocking to the next.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
