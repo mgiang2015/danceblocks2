@@ -109,6 +109,8 @@ export const stateSlice = createSlice({
             state.blockingCount = payload.newState.blockingCount;
             state.currentBlockingId = payload.newState.currentBlockingId;
             state.blockings = payload.newState.blockings;
+            state.stageWidth = payload.newState.stageWidth;
+            state.stageDepth = payload.newState.stageDepth;
         }
     }
 })
