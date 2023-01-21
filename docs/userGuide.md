@@ -54,13 +54,21 @@ Blockings can be deleted by hovering over the blocking and click "Edit". There i
 
 ### Dancer list
 
-Dancer list on the right is automatically sorted so that you can quickly find whether a dancer is present. You can click on a dancer's name to change their name and color.
+Dancer list on the right is automatically sorted so that you can quickly find whether a dancer is present. You can click on a dancer's name to change their name, color and angle they are facing.
 
 ### Add dancer
 
 A new dancer will be added as "New Dancer" and will appear on the top left of the stage. You can then drag the dancer to a new position and change their name and color. Dancers can currently only be moved 1 at a time.
 
 Avoid colors that are too light as they might blend in with the white background of the stage.
+
+### Rotate dancer
+
+A dancer will face the audience (bottom of your screen) by default and this is considered 0 degrees. You can change this by clicking on a dancer's name in the dancer list. A form should pop up for you to change the dancer's angle. If you set the angle to be 69 degrees, the dancer will face 69 degrees clockwise from the 0 degree mark.
+
+As you change the dancer's angle, the change is reflected in real time on the 2D stage. You will see the change take effect on the 3D stage once you render it again.
+
+I've added feet in the 3D dancer model to differentiate between front and back. The front of a dancer has their feet protruding forward and the back doesn't. This is to help tell the difference between a 0-degree and a 180-degree angle.
 
 ### Multi-select and moving many dancers at once
 

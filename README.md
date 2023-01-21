@@ -15,11 +15,12 @@ This project will remain open-source and free for the Dance Community to use, sh
 ## Features
 1. **3D Rendering**: Danceblocks can render the audience view of a blocking. You can zoom in and out through mouse scrolls, and rotate the stage around to see it from multiple perspectives. Remember to exit 3D view first before any further editing.
 2. **Add, delete and edit dancers**. Assign each dancer a name and color so that they can be easily differentiated. This can be done by clicking the dancer list.
-3. You can **move dancers around** by dragging them over to where you want them to be.
-4. **Add blocking**. You can change the blocking's name after it's been created. The new blocking preserves dancers so that you don't have to add them in again one by one. View a blocking by clicking on it in the blocking list.
-5. **Change blocking ordering**. Have a blocking that you'd rather have at the intro instead of the chorus? Simply click and drag that blocking over to the front.
-6. **Changing stage dimensions**. You can change the stage dimensions to fit the stage you are working with. Stages that are too large will be scaled down to fit the screen, but the ratio will be kept.
-7. **Share your blockings**. You can download the project and share it with others so that dancers can look through all the blockings and co-choreographers can work on the blockings too!
+3. **Move dancers around**. You can move dancers by dragging them over to where you want them to be.
+4. **Rotate dancers**. In the same place where you edit dancer name and color, you can set the angle for each dancer to face. The dancer will be rotated clockwise from the default angle (facing audience).
+5. **Add blocking**. You can change the blocking's name after it's been created. The new blocking preserves dancers so that you don't have to add them in again one by one. View a blocking by clicking on it in the blocking list.
+6. **Change blocking ordering**. Have a blocking that you'd rather have at the intro instead of the chorus? Simply click and drag that blocking over to the front.
+7. **Changing stage dimensions**. You can change the stage dimensions to fit the stage you are working with. Stages that are too large will be scaled down to fit the screen, but the ratio will be kept.
+8. **Share your blockings**. You can download the project and share it with others so that dancers can look through all the blockings and co-choreographers can work on the blockings too!
 
 I've created a google form for feedback, suggestion and bug reports as well! I appreciate every suggestion that can contribute to future iterations to this project.
 
