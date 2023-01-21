@@ -1,4 +1,22 @@
-.container {
+.parentContainer {
+    width: 100%;
+}
+
+.infoContainer {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.1em;
+    row-gap: 1em;
+    align-items: center;
+    cursor: pointer;
+}
+
+.infoContainer:hover {
+    background-color: #DCDCDC;
+}
+
+.formContainer {
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr;
@@ -7,23 +25,25 @@
     align-items: center;
 }
 
-.container:hover {
-    background-color: #DCDCDC;
-}
-
-.container div {
+.infoContainer div {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
-.container input {
+.formContainer div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer input {
     width: 50%;
 }
 
-.container button {
+.formContainer button {
     width: 50%;
 }
 
