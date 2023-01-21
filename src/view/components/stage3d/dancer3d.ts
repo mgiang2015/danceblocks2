@@ -69,7 +69,30 @@ const buildRightLeg = () => {
   return rightLeg;
 }
 
-const buildDancer = (xCoord: number, yCoord: number, color: string) => {
+const buildLeftFeet = () => {
+  const leftFeet = MeshBuilder.CreateBox("leftFeet", { width: 0.5 * headWidth, height: 0.5 * headHeight, depth: 1 * headDepth });
+  // TODO: Set coordinates
+  leftFeet.position.x = -0.5 * headWidth;
+  leftFeet.position.z = -0.5 * headWidth;
+
+  return leftFeet;
+}
+
+const buildRightFeet = () => {
+  const rightFeet = MeshBuilder.CreateBox("rightFeet", { width: 0.5 * headWidth, height: 0.5 * headHeight, depth: 1 * headDepth });
+  // TODO: Set coordinates
+  rightFeet.position.x = 0.5 * headWidth;
+  rightFeet.position.z = -0.5 * headWidth;
+
+  return rightFeet;
+}
+
+function degreeToRad(degrees: number) {
+  let pi = Math.PI;
+  return degrees * (pi / 180);
+}
+
+const buildDancer = (xCoord: number, yCoord: number, angle: number, color: string) => {
   const head = buildHead();
   const neck = buildNeck();
   const torso = buildTorso();
@@ -77,12 +100,15 @@ const buildDancer = (xCoord: number, yCoord: number, color: string) => {
   const rightArm = buildRightArm();
   const leftLeg = buildLeftLeg();
   const rightLeg = buildRightLeg();
+  const leftFeet = buildLeftFeet();
+  const rightFeet = buildRightFeet();
 
-  const dancer = Mesh.MergeMeshes([head, neck, torso, leftArm, rightArm, leftLeg, rightLeg], true, false, undefined, false, true);
+  const dancer = Mesh.MergeMeshes([head, neck, torso, leftArm, rightArm, leftLeg, rightLeg, leftFeet, rightFeet], true, false, undefined, false, true);
 
   if (dancer) {
     dancer.position.x = xCoord;
     dancer.position.z = -yCoord;
+    dancer.rotation.y = degreeToRad(angle);
     // build material for dancers
     const dancerMaterial = new StandardMaterial("dancerMaterial");
     

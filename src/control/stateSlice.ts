@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import StorageApi from "../model/storageApi";
-import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
+import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerAngle, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
 import { MaxStageDepth, MaxStageWidth } from "./const";
 import { RootState } from "./store";
 
@@ -76,6 +76,13 @@ export const stateSlice = createSlice({
                 updateDancerName(currentBlocking, payload.id, payload.name);
             }
         },
+        changeDancerAngle: (state, action) => {
+            let payload: { id: number, angle: number } = action.payload;
+            let currentBlocking = findCurrentBlocking(state);
+            if (currentBlocking) {
+                updateDancerAngle(currentBlocking, payload.id, payload.angle);
+            }
+        },
         changeDancerColor: (state, action) => {
             let payload: { id: number, color: string } = action.payload;
             let currentBlocking = findCurrentBlocking(state);
@@ -115,7 +122,7 @@ export const stateSlice = createSlice({
     }
 })
 
-export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState } = stateSlice.actions
+export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, changeDancerAngle, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState } = stateSlice.actions
 export const selectState = (state: RootState) => state.appState
 export const selectStageWidth = (state: RootState) => state.appState.stageWidth
 export const selectStageDepth = (state: RootState) => state.appState.stageDepth

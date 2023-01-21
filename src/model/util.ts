@@ -53,6 +53,13 @@ function updateDancerColor(blocking: Blocking, dancerId: number, color: string) 
     }
 }
 
+function updateDancerAngle(blocking: Blocking, dancerId: number, angle: number) {
+    let dancer = blocking.dancers.find((dancer) => dancer.id === dancerId);
+    if (dancer) {
+        dancer.angle = angle;
+    }
+}
+
 function deleteDancerFromBlocking(blocking: Blocking, dancerId: number) {
     let dancerIndex = blocking.dancers.findIndex((dancer) => dancer.id === dancerId);
     if (dancerIndex > -1) {
@@ -135,4 +142,4 @@ function getWindowDimensions() {
     };
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId, moveBlockingToNewIndex}
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, updateDancerAngle, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId, moveBlockingToNewIndex}

@@ -4,6 +4,7 @@ interface Dancer {
     color: string
     xCoord: number
     yCoord: number
+    angle?: number
 }
 
 interface Blocking {
