@@ -69,7 +69,12 @@ const buildRightLeg = () => {
   return rightLeg;
 }
 
-const buildDancer = (xCoord: number, yCoord: number, color: string) => {
+function degreeToRad(degrees: number) {
+  let pi = Math.PI;
+  return degrees * (pi / 180);
+}
+
+const buildDancer = (xCoord: number, yCoord: number, angle: number, color: string) => {
   const head = buildHead();
   const neck = buildNeck();
   const torso = buildTorso();
@@ -83,6 +88,7 @@ const buildDancer = (xCoord: number, yCoord: number, color: string) => {
   if (dancer) {
     dancer.position.x = xCoord;
     dancer.position.z = -yCoord;
+    dancer.rotation.y = degreeToRad(angle);
     // build material for dancers
     const dancerMaterial = new StandardMaterial("dancerMaterial");
     

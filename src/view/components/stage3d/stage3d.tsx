@@ -38,7 +38,7 @@ export default function Stage3d() {
     
         if (currentBlocking) {
             currentBlocking.dancers.forEach((dancer) => {
-                buildDancer(dancer.xCoord - stageWidth / 2, dancer.yCoord - stageDepth / 2, dancer.color);
+                buildDancer(dancer.xCoord - stageWidth / 2, dancer.yCoord - stageDepth / 2, dancer.angle || 0, dancer.color);
             })
         }
     };
