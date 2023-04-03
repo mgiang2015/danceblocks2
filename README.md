@@ -42,10 +42,17 @@ Instagram: [@thedecoyg](https://instagram.com/thedecoyg)
 
 LinkedIn: [Le Minh Giang](https://www.linkedin.com/in/le-minh-giang-951a59163/)
 
-## Future plans
+## Future features
 1. Make a better, more realistic dancer 3D model.
 2. Allow users to change each dancer's height and direction they are facing.
-3. Allow users to add lighting to the stage. Commonly-used lighting such as spotlight and wash will be first.
-4. Allow users to add music track and assign timestamp to each blocking.
-5. Animate when dancers change from 1 blocking to the next.
+3. Allow users to add lighting to the stage. Commonly-used lighting such as spotlight and wash will be implemented first.
+4. Allow users to add music track and assign timestamp to each blocking. In between timestamps will be considered transition time which will be animated.
 
+## Next version improvements and rationale
+1. Since dancers in a piece does not change, just goes on and off stage: Have a shared array of dancer info for all blockings (ID, name, color) instead of duplicating it each time a new blocking is added.
+  - This means updates to dancer info (name, color) will cascade over all blockings which is desired most of the time.
+  - This also means deletion / addition of a dancer will cascade over all blockings. This might not be desirable sometimes assuming they only want to exclude the dancer from the current blocking. For addition, the dancer will be placed backstage by default for all blockings. For deletion, users will get a pop-up informing that this would cascade over all blockings they have (front and back) and ask if they only want to move the dancer backstage instead.
+2. Animation - Animation over a sequence of consecutive blockings instead of whenever I switch from any 1 blocking to another.
+  - More extendable -> The same feature can be applied on 3D view, lighting, music overlay later on without much rewriting.
+  - Choreographers use animation to visualise how dancers move between 2 or more consecutive blockings most of the time, rather than 2 random blockings to see traffic and crossing
+  - This means there will be a separate animation view / mode (similar to Microsoft Powerpoint where there's edit mode and presentation mode, edit mode doesn't care about animation between slides and will be executed during presentation mode)
