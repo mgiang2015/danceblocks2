@@ -14,6 +14,7 @@ const initialState: () => AppState = () => {
         blockings: [],
         currentBlockingId: -1,
         view3d: false,
+        gridGap: 20, // 10 is the distance between grid lines. Default value is 4. Implement change later.
         stageWidth: MaxStageWidth,
         stageDepth: MaxStageDepth
     }
@@ -128,6 +129,7 @@ export const selectStageWidth = (state: RootState) => state.appState.stageWidth
 export const selectStageDepth = (state: RootState) => state.appState.stageDepth
 export const selectBlockings = (state: RootState) => state.appState.blockings
 export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.appState)
-export const selectView3d = (state: RootState) => state.appState.view3d;
+export const selectView3d = (state: RootState) => state.appState.view3d
+export const selectGridGap = (state: RootState) => state.appState.gridGap
 
 export default stateSlice.reducer
