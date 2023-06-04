@@ -1,7 +1,8 @@
-import { moveDancer, selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth } from "../../../control/stateSlice";
+import { moveDancer, selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth, setDancerCoordAbsolute } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
 import styles from "./stage.module.css"
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export default function Stage() {
     const dispatch = useAppDispatch();
@@ -9,6 +10,17 @@ export default function Stage() {
     const stageWidth = useAppSelector(selectStageWidth);
     const gridGap = useAppSelector(selectGridGap);
     let currentBlocking = useAppSelector(selectCurrentBlocking);
+
+    // Get stage reference, top and left
+    const [stageTop, setStageTop] = useState(0);
+    const [stageLeft, setStageLeft] = useState(0);
+    const ref = useRef<any>();
+    useEffect(() => {
+        const { offsetLeft, offsetTop } = ref.current;
+        setStageTop(offsetTop);
+        setStageLeft(offsetLeft);
+    }, [])
+
     let dancers = (currentBlocking && currentBlocking.dancers) || []
 
     const gridVertical = []
@@ -20,27 +32,24 @@ export default function Stage() {
         gridHorizontal.push(i);
     }
 
-    console.log(gridGap)
-
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
     }
     
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         let data: { id: number, x: number, y: number } = JSON.parse(e.dataTransfer.getData("data"));
-        let oldX = data.x;
-        let oldY = data.y;
-        let newX = e.clientX;
-        let newY = e.clientY;
+        let newX = e.clientX - stageLeft;
+        let newY = e.clientY - stageTop;
         if (gridGap > 0) {
             newX = newX - newX % gridGap
             newY = newY - newY % gridGap
         }
-        dispatch(moveDancer({ id: data.id, x: newX - oldX, y: newY - oldY }));
+        
+        dispatch(setDancerCoordAbsolute({ id: data.id, x: newX, y: newY}));
     }
 
     return (
-        <div className={styles.stage} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
+        <div ref={ref} className={styles.stage} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
             {
                 gridVertical.map(i => {
                     return <div style={{ height: stageDepth, width: 1, position: "absolute", top: 0, left: i, backgroundColor: "blue" }} />

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import StorageApi from "../model/storageApi";
-import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerAngle, updateDancerColor, updateDancerCoord, updateDancerName } from "../model/util";
+import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerAngle, updateDancerColor, offsetDancerCoord, updateDancerName, setDancerCoord } from "../model/util";
 import { MaxStageDepth, MaxStageWidth } from "./const";
 import { RootState } from "./store";
 
@@ -67,7 +67,14 @@ export const stateSlice = createSlice({
             let payload: { id: number, x: number, y: number } = action.payload;
             let currentBlocking = findCurrentBlocking(state);
             if (currentBlocking) {
-                updateDancerCoord(currentBlocking, payload.id, payload.x, payload.y);
+                offsetDancerCoord(currentBlocking, payload.id, payload.x, payload.y);
+            }
+        },
+        setDancerCoordAbsolute: (state, action) => {
+            let payload: { id: number, x: number, y: number } = action.payload;
+            let currentBlocking = findCurrentBlocking(state);
+            if (currentBlocking) {
+                setDancerCoord(currentBlocking, payload.id, payload.x, payload.y);
             }
         },
         renameDancer: (state, action) => {
@@ -123,7 +130,7 @@ export const stateSlice = createSlice({
     }
 })
 
-export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, renameDancer, changeDancerColor, changeDancerAngle, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState } = stateSlice.actions
+export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, setDancerCoordAbsolute, renameDancer, changeDancerColor, changeDancerAngle, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState } = stateSlice.actions
 export const selectState = (state: RootState) => state.appState
 export const selectStageWidth = (state: RootState) => state.appState.stageWidth
 export const selectStageDepth = (state: RootState) => state.appState.stageDepth
