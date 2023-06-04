@@ -1,4 +1,4 @@
-import { moveDancer, selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth, setDancerCoordAbsolute } from "../../../control/stateSlice";
+import { moveDancer, selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth, selectViewGrid, setDancerCoordAbsolute } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
 import styles from "./stage.module.css"
@@ -9,12 +9,14 @@ export default function Stage() {
     const stageDepth = useAppSelector(selectStageDepth);
     const stageWidth = useAppSelector(selectStageWidth);
     const gridGap = useAppSelector(selectGridGap);
+    const viewGrid = useAppSelector(selectViewGrid);
     let currentBlocking = useAppSelector(selectCurrentBlocking);
 
     // Get stage reference, top and left
     const [stageTop, setStageTop] = useState(0);
     const [stageLeft, setStageLeft] = useState(0);
     const ref = useRef<any>();
+
     useEffect(() => {
         const { offsetLeft, offsetTop } = ref.current;
         setStageTop(offsetTop);
@@ -22,15 +24,6 @@ export default function Stage() {
     }, [])
 
     let dancers = (currentBlocking && currentBlocking.dancers) || []
-
-    const gridVertical = []
-    const gridHorizontal = []
-    for (let i = 0; i < stageWidth; i += gridGap) {
-        gridVertical.push(i);
-    }
-    for (let i = 0; i < stageDepth; i += gridGap) {
-        gridHorizontal.push(i);
-    }
 
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -40,7 +33,7 @@ export default function Stage() {
         let data: { id: number, x: number, y: number } = JSON.parse(e.dataTransfer.getData("data"));
         let newX = e.clientX - stageLeft;
         let newY = e.clientY - stageTop;
-        if (gridGap > 0) {
+        if (viewGrid && gridGap > 0) {
             newX = newX - newX % gridGap
             newY = newY - newY % gridGap
         }
@@ -50,16 +43,7 @@ export default function Stage() {
 
     return (
         <div ref={ref} className={styles.stage} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e)} style={{ position: "relative", width: stageWidth, height: stageDepth, border: "0.1em solid black" }}>
-            {
-                gridVertical.map(i => {
-                    return <div style={{ height: stageDepth, width: 1, position: "absolute", top: 0, left: i, backgroundColor: "blue" }} />
-                })
-            }
-            {
-                gridHorizontal.map(i => {
-                    return <div style={{ height: 1, width: stageWidth, position: "absolute", top: i, left: 0, backgroundColor: "blue" }} />
-                })
-            }
+            { viewGrid ? <div className={styles.grid} style={{ backgroundSize: `${gridGap}px ${gridGap}px` }}></div> : <div />}
             <span className={styles.frontCenter}>{"|"}</span>
             <span className={styles.frontLeftQuarter}>{"|"}</span>
             <span className={styles.frontRightQuarter}>{"|"}</span>

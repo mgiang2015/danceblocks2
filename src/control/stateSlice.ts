@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import StorageApi from "../model/storageApi";
 import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerAngle, updateDancerColor, offsetDancerCoord, updateDancerName, setDancerCoord } from "../model/util";
-import { MaxStageDepth, MaxStageWidth } from "./const";
+import { DefaultGridGap, GridGapIncrement, MaxStageDepth, MaxStageWidth } from "./const";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {
@@ -14,7 +14,8 @@ const initialState: () => AppState = () => {
         blockings: [],
         currentBlockingId: -1,
         view3d: false,
-        gridGap: 20, // 10 is the distance between grid lines. Default value is 4. Implement change later.
+        viewGrid: false,
+        gridGap: DefaultGridGap, // 20 is the distance between grid lines. Default value is 4. Implement change later.
         stageWidth: MaxStageWidth,
         stageDepth: MaxStageDepth
     }
@@ -118,6 +119,30 @@ export const stateSlice = createSlice({
             let payload: { width: number } = action.payload;
             state.stageWidth = payload.width;
         },
+        // Grid gap
+        incrementGridGap: (state, action) => {
+            let payload: { inc: number } = action.payload
+            if (state.gridGap < Math.min(state.stageDepth, state.stageWidth)) {
+                state.gridGap = state.gridGap + payload.inc;
+                state.viewGrid = true;
+            }
+        },
+        decrementGridGap: (state, action) => {
+            let payload: { dec: number } = action.payload
+            if (state.gridGap > payload.dec) {
+                state.gridGap = state.gridGap - payload.dec;
+            }
+        },
+        disableGrid: (state) => {
+            if (state.viewGrid) {
+                state.viewGrid = false;
+            }
+        },
+        enableGrid: (state) => {
+            if (!state.viewGrid) {
+                state.viewGrid = true;
+            }
+        },
         // the whole state
         setNewState: (state, action) => {
             let payload: { newState: AppState } = action.payload;
@@ -126,17 +151,20 @@ export const stateSlice = createSlice({
             state.blockings = payload.newState.blockings;
             state.stageWidth = payload.newState.stageWidth;
             state.stageDepth = payload.newState.stageDepth;
+            state.gridGap = payload.newState.gridGap || DefaultGridGap;
+            state.viewGrid = payload.newState.viewGrid || false;
         }
     }
 })
 
-export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, setDancerCoordAbsolute, renameDancer, changeDancerColor, changeDancerAngle, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState } = stateSlice.actions
+export const { addBlocking, renameBlocking, deleteBlocking, changeCurrentBlocking, addDancer, moveDancer, setDancerCoordAbsolute, renameDancer, changeDancerColor, changeDancerAngle, deleteDancer, moveBlocking, toggle3d, updateStageDepth, updateStageWidth, setNewState, incrementGridGap, decrementGridGap, disableGrid, enableGrid } = stateSlice.actions
 export const selectState = (state: RootState) => state.appState
 export const selectStageWidth = (state: RootState) => state.appState.stageWidth
 export const selectStageDepth = (state: RootState) => state.appState.stageDepth
 export const selectBlockings = (state: RootState) => state.appState.blockings
 export const selectCurrentBlocking = (state: RootState) => findCurrentBlocking(state.appState)
 export const selectView3d = (state: RootState) => state.appState.view3d
+export const selectViewGrid = (state: RootState) => state.appState.viewGrid
 export const selectGridGap = (state: RootState) => state.appState.gridGap
 
 export default stateSlice.reducer

@@ -15,7 +15,7 @@ export default function StageDancer({ dancer }: DancerProps) {
     }
 
     return (
-        <div className={styles.dancerContainer} draggable={true} onDragStart={(e) => onDragStart(e)} style={{ position: "absolute", width: "fit-content", transform: "translate(-50%,-50%)", top: dancer.yCoord, left: dancer.xCoord, display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: "pointer" }}>
+        <div className={styles.dancerContainer} draggable={true} onDragStart={(e) => onDragStart(e)} style={{ position: "absolute", width: "fit-content", transform: "translate(-50%,-50%)", top: dancer.yCoord, left: dancer.xCoord, display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: "pointer", zIndex: 1 }}>
             <p style={{ margin: 0 }}>{`${dancer.name}`}</p>
             <div style={{ position: "relative", transform: `rotate(${dancer.angle || 0}deg)` }}>
                 <div style={{ position: "relative", top: 0, left: 0 ,backgroundColor: dancer.color, height: '1.5em', width: '1.5em', borderRadius: '50%' }} />
