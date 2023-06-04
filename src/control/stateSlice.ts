@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import StorageApi from "../model/storageApi";
 import { addNewBlocking, addNewDefaultBlocking, addNewDefaultDancer, deleteBlockingFromState, deleteDancerFromBlocking, findCurrentBlocking, moveBlockingToNewIndex, updateBlockingName, updateCurrentBlockingId, updateDancerAngle, updateDancerColor, offsetDancerCoord, updateDancerName, setDancerCoord } from "../model/util";
-import { DefaultGridGap, GridGapIncrement, MaxStageDepth, MaxStageWidth } from "./const";
+import { DefaultGridGap, MaxStageDepth, MaxStageWidth } from "./const";
 import { RootState } from "./store";
 
 const initialState: () => AppState = () => {

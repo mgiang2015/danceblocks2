@@ -1,8 +1,8 @@
-import { moveDancer, selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth, selectViewGrid, setDancerCoordAbsolute } from "../../../control/stateSlice";
+import { selectCurrentBlocking, selectGridGap, selectStageDepth, selectStageWidth, selectViewGrid, setDancerCoordAbsolute } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import StageDancer from "./stageDancer";
 import styles from "./stage.module.css"
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Stage() {
     const dispatch = useAppDispatch();
