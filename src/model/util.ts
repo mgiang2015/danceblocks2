@@ -1,8 +1,4 @@
-const NEW_DANCER_NAME = "New Dancer";
-const NEW_DANCER_COLOR = "#A020F0";
-const NEW_BLOCKING_NAME = "New Blocking";
-const NEW_DANCER_XCOORD = 0
-const NEW_DANCER_YCOORD = 0
+import { NEW_BLOCKING_NAME, NEW_DANCER_COLOR, NEW_DANCER_NAME, NEW_DANCER_XCOORD, NEW_DANCER_YCOORD } from "../control/const";
 
 function addNewDefaultDancer(blocking: Blocking) {
     let id = blocking.dancerCount

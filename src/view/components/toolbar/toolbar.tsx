@@ -132,7 +132,7 @@ export default function Toolbar() {
             </form>
             : null
         }
-        <button onClick={() => dispatch(addBlocking())}>{"Add Blocking"}</button>
+        <button onClick={() => dispatch(addBlocking())}>{"Add Fomration"}</button>
         <button onClick={() => dispatch(addDancer())}>{"Add Dancer"}</button>
         <button onClick={() => dispatch(toggle3d())}>{appState.view3d ? "Exit 3D" : "View 3D"}</button>
         <button onClick={() => downloadProject()}>{"Share Project"}</button>
