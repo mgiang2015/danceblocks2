@@ -19,6 +19,8 @@ interface AppState {
     blockings: Blocking[]
     currentBlockingId: number
     view3d: boolean
+    viewGrid: boolean
+    gridGap: number
     stageDepth: number
     stageWidth: number
 }

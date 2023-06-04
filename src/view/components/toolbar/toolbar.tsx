@@ -1,8 +1,8 @@
-import { addBlocking, addDancer, selectState, setNewState, toggle3d, updateStageDepth, updateStageWidth } from "../../../control/stateSlice";
+import { addBlocking, addDancer, decrementGridGap, disableGrid, enableGrid, incrementGridGap, selectState, setNewState, toggle3d, updateStageDepth, updateStageWidth } from "../../../control/stateSlice";
 import { useAppDispatch, useAppSelector } from "../../../control/hooks";
 import { useEffect, useState } from "react";
 import styles from "./toolbar.module.css"
-import { MaxStageDepth, MaxStageWidth, scalingConstant } from "../../../control/const";
+import { GridGapIncrement, MaxStageDepth, MaxStageWidth, scalingConstant } from "../../../control/const";
 
 export default function Toolbar() {
     const dispatch = useAppDispatch();
@@ -100,6 +100,22 @@ export default function Toolbar() {
         setEditDimension(false);
     }
 
+    const onIncrementGridGap = () => {
+        dispatch(incrementGridGap({ inc: GridGapIncrement }))
+    }
+
+    const onDecrementGridGap = () => {
+        dispatch(decrementGridGap({ dec: GridGapIncrement }))
+    }
+
+    const onEnableGrid = () => {
+        dispatch(enableGrid())
+    }
+
+    const onDisableGrid = () => {
+        dispatch(disableGrid())
+    }
+
     return (
     <div className={styles.container}>
         <p>Tools</p>
@@ -115,11 +131,16 @@ export default function Toolbar() {
                 <button onClick={onReset}>{"Reset"}</button>
             </form>
             : null
-        }        
-        <button onClick={() => dispatch(addBlocking())}>{"Add Blocking"}</button>
+        }
+        <button onClick={() => dispatch(addBlocking())}>{"Add Fomration"}</button>
         <button onClick={() => dispatch(addDancer())}>{"Add Dancer"}</button>
         <button onClick={() => dispatch(toggle3d())}>{appState.view3d ? "Exit 3D" : "View 3D"}</button>
         <button onClick={() => downloadProject()}>{"Share Project"}</button>
+        <button onClick={() => onIncrementGridGap()}>{"Increment Grid Gap"}</button>
+        <button onClick={() => onDecrementGridGap()}>{"Decrement Grid Gap"}</button>
+        <button onClick={() => onEnableGrid()}>{"Enable Grid"}</button>
+        <button onClick={() => onDisableGrid()}>{"Disable Grid"}</button>
+
         <input type={"file"} id="upload" onChange={onFileUpload} hidden={true}/>
         <label htmlFor="upload">{"Upload Project File"}</label>
         <button><a href={"https://github.com/mgiang2015/danceblocks2/"} target="#">User Guide</a></button>

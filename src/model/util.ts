@@ -1,8 +1,4 @@
-const NEW_DANCER_NAME = "New Dancer";
-const NEW_DANCER_COLOR = "#A020F0";
-const NEW_BLOCKING_NAME = "New Blocking";
-const NEW_DANCER_XCOORD = 100
-const NEW_DANCER_YCOORD = 100
+import { NEW_BLOCKING_NAME, NEW_DANCER_COLOR, NEW_DANCER_NAME, NEW_DANCER_XCOORD, NEW_DANCER_YCOORD } from "../control/const";
 
 function addNewDefaultDancer(blocking: Blocking) {
     let id = blocking.dancerCount
@@ -31,12 +27,26 @@ function addNewDancer(blocking: Blocking, name: string, color: string, xCoord?: 
     blocking.dancers.push(newDancer);
 }
 
-function updateDancerCoord(blocking: Blocking, dancerId: number, offsetX: number, offsetY: number) {
+function offsetDancerCoord(blocking: Blocking, dancerId: number, offsetX: number, offsetY: number) {
     let dancer = blocking.dancers.find((dancer) => dancer.id === dancerId);
+
     if (dancer) {
         dancer.xCoord += offsetX;
         dancer.yCoord += offsetY;
     }
+
+    console.log("New coord: " + dancer?.xCoord + " " + dancer?.yCoord)
+}
+
+function setDancerCoord(blocking: Blocking, dancerId: number, newX: number, newY: number) {
+    let dancer = blocking.dancers.find((dancer) => dancer.id === dancerId);
+
+    if (dancer) {
+        dancer.xCoord = newX;
+        dancer.yCoord = newY;
+    }
+
+    console.log("New coord: " + dancer?.xCoord + " " + dancer?.yCoord)
 }
 
 function updateDancerName(blocking: Blocking, dancerId: number, name: string) {
@@ -142,4 +152,4 @@ function getWindowDimensions() {
     };
 }
 
-export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, updateDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, updateDancerAngle, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId, moveBlockingToNewIndex}
+export { addNewDefaultDancer, addNewDancer, findCurrentBlocking, addNewDefaultBlocking, addNewBlocking, offsetDancerCoord, setDancerCoord, getWindowDimensions, updateDancerName, updateDancerColor, updateDancerAngle, deleteDancerFromBlocking, updateBlockingName, deleteBlockingFromState, updateCurrentBlockingId, moveBlockingToNewIndex}
